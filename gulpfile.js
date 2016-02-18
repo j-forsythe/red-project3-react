@@ -1,15 +1,14 @@
 'use strict';
 
 var gulp = require('gulp');
-var babel = require('gulp-babel');
-var browserify = require('gulp-browserify');
 var browserSync = require('browser-sync');
 var plumber = require('gulp-plumber');
-var rename = require('rename');
+var rename = require('gulp-rename');
+var webpack = require('webpack-stream');
 
 var sass = require('gulp-sass');
-    autoprefixer = require('gulp-autoprefixer');
-    cssnano = require('gulp-cssnano');
+var autoprefixer = require('gulp-autoprefixer');
+var cssnano = require('gulp-cssnano');
 
 gulp.task('sass', function() {
    gulp.src('./sass/style.scss')
@@ -18,24 +17,37 @@ gulp.task('sass', function() {
       .pipe(autoprefixer({
          browsers: ['last 2 versions']
       }))
-      .pipe(gulp.dest('./build/css'))
+      .pipe(gulp.dest('./build'))
       .pipe(cssnano())
       .pipe(rename('style.min.css'))
-      .pipe(gulp.dest('./build/css'));
+      .pipe(gulp.dest('./build'));
 });
 
 
 gulp.task('compile-react', function() {
-	return gulp.src('main.jsx')
+	gulp.src('./**/*.jsx')
 		.pipe(plumber())
-		.pipe(babel({
-			presets: ['es2015', 'react']
-		}))
-		.pipe(browserify({
-			insertGlobals: true,
-			debug: true
-		}))
-		.pipe(gulp.dest('./'));
+		.pipe(webpack({
+        entry: {
+          main: './main.jsx'
+        },
+        watch: true,
+        output: {
+          publicPath: '',
+          filename: 'main.js'
+        },
+        module: {
+          loaders: [{
+            test: /\.jsx?$/,
+            exclude: /(node_modules)/,
+            loader: 'babel-loader',
+            query: {
+              presets: ['es2015', 'react']
+            }
+          }]
+        }
+      }))
+		.pipe(gulp.dest('./build'));
 });
 
 gulp.task('browser-sync', ['compile-react'], function() {
@@ -45,7 +57,8 @@ gulp.task('browser-sync', ['compile-react'], function() {
 	});
 
 	gulp.watch(['main.jsx'], ['compile-react']);
-	gulp.watch(['main.js', 'index.html']).on('change', browserSync.reload);
+  gulp.watch('sass/*.scss', ['sass']);
+	gulp.watch(['build/main.js', 'index.html', 'build/*.min.css']).on('change', browserSync.reload);
 });
 
 gulp.task('default', ['browser-sync']);
