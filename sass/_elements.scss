@@ -1,0 +1,27 @@
+body {
+  font-size: 16px;
+  font-family: Open Sans;
+  color: #ffffff;
+}
+
+header {
+  display: none;
+  @include desktop {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    align-items: center;
+    justify-content: flex-start;
+    width: 20vw;
+  }
+}
+
+section {
+  width: 100vw;
+  background-color: $brand-color;
+  display: flex;
+  justify-content: center;
+  @include desktop {
+    width: 80vw;
+  }
+}

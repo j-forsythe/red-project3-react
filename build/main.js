@@ -49,7 +49,52 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
 
-	console.log('hemrow');
+	var MarsApp = React.createClass({
+	  displayName: 'MarsApp',
+
+
+	  // getInitialState: function() {
+	  //   return ''
+	  // },
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'app' },
+	      React.createElement(
+	        'header',
+	        null,
+	        React.createElement(
+	          'h1',
+	          { className: 'title' },
+	          'Mars'
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'shuttle' },
+	          React.createElement('i', { className: 'fa fa-space-shuttle' })
+	        )
+	      ),
+	      React.createElement(
+	        'section',
+	        { className: 'test-area' },
+	        React.createElement(
+	          'button',
+	          { className: 'take-test' },
+	          'Take Test'
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'timer' },
+	          '1:00'
+	        )
+	      )
+	    );
+	  }
+
+	});
+
+	ReactDOM.render(React.createElement(MarsApp, null), document.querySelector('#mars-node'));
 
 /***/ },
 /* 1 */

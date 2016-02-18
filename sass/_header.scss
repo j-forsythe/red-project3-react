@@ -1,0 +1,23 @@
+.app {
+  display: flex;
+  height: 100vh;
+}
+
+.shuttle {
+  background-color: $brand-color;
+  border-radius: 50%;
+  font-size: 4.5rem;
+  transform: rotate(270deg);
+  padding: 0.5rem;
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: 5rem;
+  color: #86817f;
+  font-family: sans-serif;
+  font-weight: bold;
+  letter-spacing: -0.75rem;
+  transform: rotate(270deg);
+  margin: 5rem 0 3.5rem 0;
+}

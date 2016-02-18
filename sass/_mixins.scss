@@ -1,0 +1,6 @@
+$desktop-width: 600px;
+@mixin desktop {
+  @media all and (min-width: $desktop-width){
+    @content;
+  }
+}

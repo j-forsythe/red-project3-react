@@ -70,3 +70,79 @@ table {
   src: url("fonts/opensans-bolditalic-webfont.eot") format("embedded-opentype"), url("fonts/opensans-bolditalic-webfont.woff") format("woff"), url("fonts/opensans-bolditalic-webfont.ttf") format("truetype"), url("fonts/opensans-bolditalic-webfont.svg") format("svg");
   font-weight: bold;
   font-style: italic; }
+
+body {
+  font-size: 16px;
+  font-family: Open Sans;
+  color: #ffffff; }
+
+header {
+  display: none; }
+  @media all and (min-width: 600px) {
+    header {
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      background-color: white;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-justify-content: flex-start;
+          -ms-flex-pack: start;
+              justify-content: flex-start;
+      width: 20vw; } }
+
+section {
+  width: 100vw;
+  background-color: #bb2f09;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+  @media all and (min-width: 600px) {
+    section {
+      width: 80vw; } }
+
+.app {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100vh; }
+
+.shuttle {
+  background-color: #bb2f09;
+  border-radius: 50%;
+  font-size: 4.5rem;
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+  padding: 0.5rem; }
+
+.title {
+  text-transform: uppercase;
+  font-size: 5rem;
+  color: #86817f;
+  font-family: sans-serif;
+  font-weight: bold;
+  letter-spacing: -0.75rem;
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+  margin: 5rem 0 3.5rem 0; }
+
+button {
+  color: #e2231a;
+  text-transform: uppercase;
+  font-weight: bold;
+  -webkit-align-self: center;
+      -ms-flex-item-align: center;
+          align-self: center; }
+
+.timer {
+  font-family: Orbitron, sans-serif;
+  text-align: right;
+  background-color: #000000;
+  color: #13b127; }
