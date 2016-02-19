@@ -17,8 +17,16 @@ var Timer = React.createClass({
   },
 
   getSeconds: function() {
-    return (this.state.secondsElapsed >= 60 ? Math.floor(this.state.secondsElapsed % 60) : 60
-  );
+    if (this.props.startTime >= 1) {
+      return this.props.startTime * 60;
+    }
+    else {
+      return 60;
+    }
+  },
+
+  secondsLeft: function () {
+    return Math.floor(this.state.secondsElapsed % 60)
   },
 
   minutesLeft: function () {
@@ -27,10 +35,6 @@ var Timer = React.createClass({
 
 
   tick: function(){
-    // this.setState({minutesElapsed: this.state.minutesElapsed - 1})
-    // if (this.state.minutesElapsed === 0) {
-    //   clearInterval(this.interval);
-    // }
     this.setState({secondsElapsed: this.state.secondsElapsed - 1})
     if (this.state.secondsElapsed === 0){
       clearInterval(this.interval)
@@ -38,10 +42,14 @@ var Timer = React.createClass({
 
   },
 
-  componentDidMount: function(props){
+  componentDidMount: function(){
      this.interval = setInterval(this.tick, 1000);
-     if(this.props.beginTest && this.interval){
-       this.tick(); }
+    },
+
+  componentWillReceiveProps: function(props) {
+    if(props.start === true){
+      this.componentDidMount();
+    }
   },
 
   clearTimer: function() {
@@ -53,10 +61,10 @@ var Timer = React.createClass({
   },
 
   render: function() {
-    var seconds = this.state.secondsElapsed;
+    var seconds = this.secondsLeft();
     return (
       <div className={this.showHideTimer()}>
-        {this.minutesLeft}:{seconds < 10 ? '0' + seconds : seconds}
+        {this.minutesLeft()}:{seconds < 10 ? '0' + seconds : seconds}
       </div>
     )
   }

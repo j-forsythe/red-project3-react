@@ -24745,20 +24745,20 @@
 
 	  getInitialState: function getInitialState() {
 	    return {
-	      start: false
+	      startup: false
 	    };
 	  },
 
 	  beginTest: function beginTest() {
-	    this.setState({ start: true });
+	    this.setState({ startup: true });
 	  },
 
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
 	      { className: 'test-area' },
-	      _react2.default.createElement(_timer2.default, { start: this.state.start }),
-	      !this.state.start ? _react2.default.createElement(
+	      _react2.default.createElement(_timer2.default, { start: this.state.startup, startTime: 1 }),
+	      !this.state.startup ? _react2.default.createElement(
 	        'button',
 	        { className: 'evaluate', onClick: this.beginTest },
 	        'Begin Evaluation'
@@ -24804,7 +24804,15 @@
 
 	  // minutesElapsed: 1
 	  getSeconds: function getSeconds() {
-	    return this.state.secondsElapsed >= 60 ? Math.floor(this.state.secondsElapsed % 60) : 60;
+	    if (this.props.startTime >= 1) {
+	      return this.props.startTime * 60;
+	    } else {
+	      return 60;
+	    }
+	  },
+
+	  secondsLeft: function secondsLeft() {
+	    return Math.floor(this.state.secondsElapsed % 60);
 	  },
 
 	  minutesLeft: function minutesLeft() {
@@ -24812,20 +24820,19 @@
 	  },
 
 	  tick: function tick() {
-	    // this.setState({minutesElapsed: this.state.minutesElapsed - 1})
-	    // if (this.state.minutesElapsed === 0) {
-	    //   clearInterval(this.interval);
-	    // }
 	    this.setState({ secondsElapsed: this.state.secondsElapsed - 1 });
 	    if (this.state.secondsElapsed === 0) {
 	      clearInterval(this.interval);
 	    }
 	  },
 
-	  componentDidMount: function componentDidMount(props) {
+	  componentDidMount: function componentDidMount() {
 	    this.interval = setInterval(this.tick, 1000);
-	    if (this.props.beginTest && this.interval) {
-	      this.tick();
+	  },
+
+	  componentWillReceiveProps: function componentWillReceiveProps(props) {
+	    if (props.start === true) {
+	      this.componentDidMount();
 	    }
 	  },
 
@@ -24838,11 +24845,11 @@
 	  },
 
 	  render: function render() {
-	    var seconds = this.state.secondsElapsed;
+	    var seconds = this.secondsLeft();
 	    return _react2.default.createElement(
 	      'div',
 	      { className: this.showHideTimer() },
-	      this.minutesLeft,
+	      this.minutesLeft(),
 	      ':',
 	      seconds < 10 ? '0' + seconds : seconds
 	    );

@@ -8,20 +8,20 @@ var Questions = React.createClass({
 
   getInitialState: function() {
     return {
-      start: false
+      startup: false
     }
   },
 
   beginTest: function() {
-    this.setState( { start: true });
+    this.setState( { startup: true });
   },
 
 
   render: function() {
     return (
       <div className="test-area">
-          <Timer start={this.state.start}/>
-        { !this.state.start ? <button className="evaluate" onClick={this.beginTest}>Begin Evaluation</button> : ""}
+          <Timer start={this.state.startup} startTime={1}/>
+        { !this.state.startup ? <button className="evaluate" onClick={this.beginTest}>Begin Evaluation</button> : ""}
       </div>
     );
   }
