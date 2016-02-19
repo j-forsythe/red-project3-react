@@ -8,11 +8,9 @@ var Timer = React.createClass({
 
 
   getInitialState: function() {
-    // var seconds = this.getSeconds();
-
+    var secondz = this.getSeconds();
     return {
-      secondsElapsed: 60,
-      // minutesElapsed: 1
+      secondsElapsed: secondz,
     }
   },
 
@@ -26,33 +24,33 @@ var Timer = React.createClass({
   },
 
   secondsLeft: function () {
-    return Math.floor(this.state.secondsElapsed % 60)
+    return Math.floor(this.state.secondsElapsed % 60);
   },
 
   minutesLeft: function () {
-    return Math.floor(this.state.secondsElapsed / 60)
+    return Math.floor(this.state.secondsElapsed / 60);
   },
 
 
   tick: function(){
     this.setState({secondsElapsed: this.state.secondsElapsed - 1})
     if (this.state.secondsElapsed === 0){
-      clearInterval(this.interval)
+      this.stopTime();
     }
-
   },
 
-  componentDidMount: function(){
-     this.interval = setInterval(this.tick, 1000);
+  startTime: function(){
+    this.setState(this.getInitialState());
+    this.interval = setInterval(this.tick, 1000);
     },
 
   componentWillReceiveProps: function(props) {
     if(props.start === true){
-      this.componentDidMount();
+      this.startTime();
     }
   },
 
-  clearTimer: function() {
+  stopTime: function() {
     clearInterval(this.interval);
   },
 

@@ -16,7 +16,6 @@ var Questions = React.createClass({
     this.setState( { startup: true });
   },
 
-
   render: function() {
     return (
       <div className="test-area">

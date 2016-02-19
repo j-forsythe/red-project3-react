@@ -24795,14 +24795,12 @@
 
 
 	  getInitialState: function getInitialState() {
-	    // var seconds = this.getSeconds();
-
+	    var secondz = this.getSeconds();
 	    return {
-	      secondsElapsed: 60
+	      secondsElapsed: secondz
 	    };
 	  },
 
-	  // minutesElapsed: 1
 	  getSeconds: function getSeconds() {
 	    if (this.props.startTime >= 1) {
 	      return this.props.startTime * 60;
@@ -24822,21 +24820,22 @@
 	  tick: function tick() {
 	    this.setState({ secondsElapsed: this.state.secondsElapsed - 1 });
 	    if (this.state.secondsElapsed === 0) {
-	      clearInterval(this.interval);
+	      this.stopTime();
 	    }
 	  },
 
-	  componentDidMount: function componentDidMount() {
+	  startTime: function startTime() {
+	    this.setState(this.getInitialState());
 	    this.interval = setInterval(this.tick, 1000);
 	  },
 
 	  componentWillReceiveProps: function componentWillReceiveProps(props) {
 	    if (props.start === true) {
-	      this.componentDidMount();
+	      this.startTime();
 	    }
 	  },
 
-	  clearTimer: function clearTimer() {
+	  stopTime: function stopTime() {
 	    clearInterval(this.interval);
 	  },
 
