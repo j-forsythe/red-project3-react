@@ -1,4 +1,6 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
+
 
 var Welcome = React.createClass({
 
@@ -8,7 +10,7 @@ var Welcome = React.createClass({
 
   render: function() {
     return (
-      <div class="test-area">
+      <div className="test-area">
         <button className="take-test" onClick={this.evaluateButton}>Take Test</button>
       </div>
     )

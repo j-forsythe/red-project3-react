@@ -1,7 +1,6 @@
 .test-area {
   display:flex;
   align-items: center;
-
 }
 
 button {
@@ -23,7 +22,12 @@ button {
   padding: 0.5rem 1rem;
   width: 120px;
   box-shadow: 4px 12px 22px 3px rgba(0, 0, 0, 0.5);
-  top: 0.5rem;
+  top: 5rem;
   right: 1rem;
   text-align: center;
+  transition: all 1s ease-in-out;
+  &.hidden {
+    right: -200px;
+
+  }
 }

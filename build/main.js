@@ -24729,6 +24729,8 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRouter = __webpack_require__(159);
+
 	var _timer = __webpack_require__(217);
 
 	var _timer2 = _interopRequireDefault(_timer);
@@ -24741,16 +24743,26 @@
 	  displayName: 'Questions',
 
 
+	  getInitialState: function getInitialState() {
+	    return {
+	      start: false
+	    };
+	  },
+
+	  beginTest: function beginTest() {
+	    this.setState({ start: true });
+	  },
+
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
 	      { className: 'test-area' },
-	      _react2.default.createElement(_timer2.default, null),
-	      _react2.default.createElement(
+	      _react2.default.createElement(_timer2.default, { start: this.state.start }),
+	      !this.state.start ? _react2.default.createElement(
 	        'button',
-	        { className: 'evaluate', onClick: this.takeTest },
+	        { className: 'evaluate', onClick: this.beginTest },
 	        'Begin Evaluation'
-	      )
+	      ) : ""
 	    );
 	  }
 
@@ -24770,9 +24782,12 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _questions = __webpack_require__(216);
+
+	var _questions2 = _interopRequireDefault(_questions);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// import Questions from 'questions.jsx';
 	// import Welcome from 'welcome.jsx';
 
 	var Timer = _react2.default.createClass({
@@ -24780,34 +24795,54 @@
 
 
 	  getInitialState: function getInitialState() {
+	    // var seconds = this.getSeconds();
+
 	    return {
-	      timeElapsed: 6000,
-	      secondsElapsed: 60,
-	      minutesElapsed: 1
+	      secondsElapsed: 60
 	    };
 	  },
 
+	  // minutesElapsed: 1
+	  getSeconds: function getSeconds() {
+	    return this.state.secondsElapsed >= 60 ? Math.floor(this.state.secondsElapsed % 60) : 60;
+	  },
+
+	  minutesLeft: function minutesLeft() {
+	    return Math.floor(this.state.secondsElapsed / 60);
+	  },
+
 	  tick: function tick() {
+	    // this.setState({minutesElapsed: this.state.minutesElapsed - 1})
+	    // if (this.state.minutesElapsed === 0) {
+	    //   clearInterval(this.interval);
+	    // }
 	    this.setState({ secondsElapsed: this.state.secondsElapsed - 1 });
-	    if (this.state.secondsElapsed <= 0) {
+	    if (this.state.secondsElapsed === 0) {
 	      clearInterval(this.interval);
 	    }
 	  },
 
-	  componentDidMount: function componentDidMount() {
+	  componentDidMount: function componentDidMount(props) {
 	    this.interval = setInterval(this.tick, 1000);
+	    if (this.props.beginTest && this.interval) {
+	      this.tick();
+	    }
 	  },
 
-	  componentWillUnmount: function componentWillUnmount() {
+	  clearTimer: function clearTimer() {
 	    clearInterval(this.interval);
+	  },
+
+	  showHideTimer: function showHideTimer() {
+	    return this.props.start ? "timer" : "timer hidden";
 	  },
 
 	  render: function render() {
 	    var seconds = this.state.secondsElapsed;
 	    return _react2.default.createElement(
 	      'div',
-	      { className: 'timer' },
-	      this.state.minutesElapsed,
+	      { className: this.showHideTimer() },
+	      this.minutesLeft,
 	      ':',
 	      seconds < 10 ? '0' + seconds : seconds
 	    );
@@ -24827,6 +24862,8 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRouter = __webpack_require__(159);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Welcome = _react2.default.createClass({
@@ -24839,7 +24876,7 @@
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
-	      { 'class': 'test-area' },
+	      { className: 'test-area' },
 	      _react2.default.createElement(
 	        'button',
 	        { className: 'take-test', onClick: this.evaluateButton },
