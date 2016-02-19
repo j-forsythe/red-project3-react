@@ -21,9 +21,10 @@ header {
 
 section {
   width: 100vw;
-  background: $brand-color;
+  background: $mars-gradient;
   display: flex;
   justify-content: center;
+  align-content: center;
   @include desktop {
     width: 90vw;
   }

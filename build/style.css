@@ -82,7 +82,10 @@ section {
   display: flex;
   -webkit-justify-content: center;
       -ms-flex-pack: center;
-          justify-content: center; }
+          justify-content: center;
+  -webkit-align-content: center;
+      -ms-flex-line-pack: center;
+          align-content: center; }
   @media all and (min-width: 600px) {
     section {
       width: 90vw; } }
@@ -107,12 +110,17 @@ section {
           transform: rotate(270deg);
   margin: 5rem 0 3.5rem 0; }
 
-.take-test {
+.test-area {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+button {
   text-transform: uppercase;
   font-weight: bold;
-  -webkit-align-self: center;
-      -ms-flex-item-align: center;
-          align-self: center;
   border: none;
   padding: 1rem 4rem;
   cursor: pointer;
@@ -123,7 +131,11 @@ section {
   background-color: #000000;
   color: #13b127;
   position: absolute;
-  font-size: 2rem;
-  border: linear-gradient(to right, #bb2f09, #c25916);
+  font-size: 3rem;
+  border: 2px solid #bb2f09;
   padding: 0.5rem 1rem;
-  box-shadow: 4px 12px 22px 3px rgba(0, 0, 0, 0.5); }
+  width: 120px;
+  box-shadow: 4px 12px 22px 3px rgba(0, 0, 0, 0.5);
+  top: 0.5rem;
+  right: 1rem;
+  text-align: center; }

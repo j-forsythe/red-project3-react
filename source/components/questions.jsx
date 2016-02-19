@@ -5,9 +5,13 @@ import Timer from './timer.jsx';
 
 var Questions = React.createClass({
 
+
   render: function() {
     return (
-      <Timer />
+      <div className="test-area">
+          <Timer />
+        <button className="evaluate" onClick={this.takeTest}>Begin Evaluation</button>
+      </div>
     );
   }
 

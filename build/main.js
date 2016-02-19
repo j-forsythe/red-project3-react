@@ -24742,7 +24742,16 @@
 
 
 	  render: function render() {
-	    return _react2.default.createElement(_timer2.default, null);
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'test-area' },
+	      _react2.default.createElement(_timer2.default, null),
+	      _react2.default.createElement(
+	        'button',
+	        { className: 'evaluate', onClick: this.takeTest },
+	        'Begin Evaluation'
+	      )
+	    );
 	  }
 
 	});
@@ -24755,7 +24764,7 @@
 /* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var _react = __webpack_require__(1);
 
@@ -24767,17 +24776,22 @@
 	// import Welcome from 'welcome.jsx';
 
 	var Timer = _react2.default.createClass({
-	  displayName: "Timer",
+	  displayName: 'Timer',
 
 
 	  getInitialState: function getInitialState() {
 	    return {
-	      secondsElapsed: 10
+	      timeElapsed: 6000,
+	      secondsElapsed: 60,
+	      minutesElapsed: 1
 	    };
 	  },
 
 	  tick: function tick() {
 	    this.setState({ secondsElapsed: this.state.secondsElapsed - 1 });
+	    if (this.state.secondsElapsed <= 0) {
+	      clearInterval(this.interval);
+	    }
 	  },
 
 	  componentDidMount: function componentDidMount() {
@@ -24785,15 +24799,17 @@
 	  },
 
 	  componentWillUnmount: function componentWillUnmount() {
-	    this.clearInterval = clearInterval(this.secondsElapsed <= 0);
+	    clearInterval(this.interval);
 	  },
 
 	  render: function render() {
+	    var seconds = this.state.secondsElapsed;
 	    return _react2.default.createElement(
-	      "div",
-	      { className: "timer" },
-	      ":",
-	      this.state.secondsElapsed
+	      'div',
+	      { className: 'timer' },
+	      this.state.minutesElapsed,
+	      ':',
+	      seconds < 10 ? '0' + seconds : seconds
 	    );
 	  }
 
@@ -24815,16 +24831,20 @@
 
 	var Welcome = _react2.default.createClass({
 	  displayName: 'Welcome',
-	  takeTest: function takeTest() {
-	    this.props.history.push('/questions');
+	  evaluateButton: function evaluateButton() {
+	    this.props.history.push('/mars-test');
 	  },
 
 
 	  render: function render() {
 	    return _react2.default.createElement(
-	      'button',
-	      { className: 'take-test', onClick: this.takeTest },
-	      'Take Test'
+	      'div',
+	      { 'class': 'test-area' },
+	      _react2.default.createElement(
+	        'button',
+	        { className: 'take-test', onClick: this.evaluateButton },
+	        'Take Test'
+	      )
 	    );
 	  }
 

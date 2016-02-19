@@ -8,12 +8,17 @@ var Timer = React.createClass({
 
   getInitialState: function() {
     return {
-      secondsElapsed: 10
+      timeElapsed: 6000,
+      secondsElapsed: 60,
+      minutesElapsed: 1
     }
   },
 
   tick: function(){
     this.setState({secondsElapsed: this.state.secondsElapsed - 1})
+      if (this.state.secondsElapsed <=0) {
+        clearInterval(this.interval);
+      }
   },
 
   componentDidMount: function(){
@@ -21,12 +26,13 @@ var Timer = React.createClass({
   },
 
   componentWillUnmount: function() {
-    this.clearInterval = clearInterval(this.secondsElapsed <= 0);
+    clearInterval(this.interval);
   },
 
   render: function() {
+    var seconds = this.state.secondsElapsed;
     return (
-      <div className="timer">:{this.state.secondsElapsed}</div>
+      <div className="timer">{this.state.minutesElapsed}:{seconds < 10 ? '0' + seconds : seconds}</div>
     )
   }
 

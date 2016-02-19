@@ -2,13 +2,15 @@ import React from 'react';
 
 var Welcome = React.createClass({
 
-  takeTest() {
-    this.props.history.push('/questions');
+  evaluateButton() {
+    this.props.history.push('/mars-test');
   },
 
   render: function() {
     return (
-      <button className="take-test" onClick={this.takeTest}>Take Test</button>
+      <div class="test-area">
+        <button className="take-test" onClick={this.evaluateButton}>Take Test</button>
+      </div>
     )
   }
 

@@ -1,7 +1,12 @@
-.take-test {
+.test-area {
+  display:flex;
+  align-items: center;
+
+}
+
+button {
   text-transform: uppercase;
   font-weight: bold;
-  align-self: center;
   border: none;
   padding: 1rem 4rem;
   cursor: pointer;
@@ -13,8 +18,12 @@
   background-color: #000000;
   color: #13b127;
   position: absolute;
-  font-size: 2rem;
-  border: $brand-color;
+  font-size: 3rem;
+  border: 2px solid $mars-color;
   padding: 0.5rem 1rem;
+  width: 120px;
   box-shadow: 4px 12px 22px 3px rgba(0, 0, 0, 0.5);
+  top: 0.5rem;
+  right: 1rem;
+  text-align: center;
 }
