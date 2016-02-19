@@ -1,0 +1,20 @@
+.take-test {
+  text-transform: uppercase;
+  font-weight: bold;
+  align-self: center;
+  border: none;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  box-shadow: 4px 12px 22px 3px rgba(0, 0, 0, 0.5);
+}
+
+.timer {
+  font-family: Orbitron, sans-serif;
+  background-color: #000000;
+  color: #13b127;
+  position: absolute;
+  font-size: 2rem;
+  border: $brand-color;
+  padding: 0.5rem 1rem;
+  box-shadow: 4px 12px 22px 3px rgba(0, 0, 0, 0.5);
+}

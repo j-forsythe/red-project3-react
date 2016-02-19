@@ -45,36 +45,14 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-@font-face {
-  font-family: "Open Sans";
-  src: url("../../fonts/opensans-light-webfont.eot");
-  src: url("../../fonts/opensans-light-webfont.eot") format("embedded-opentype"), url("../../fonts/opensans-light-webfont.woff") format("woff"), url("../../fonts/opensans-light-webfont.ttf") format("truetype"), url("../../fonts/opensans-light-webfont.svg") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: "Open Sans";
-  src: url("../../fonts/opensans-bold-webfont.eot");
-  src: url("../../fonts/opensans-bold-webfont.eot") format("embedded-opentype"), url("../../fonts/opensans-bold-webfont.woff") format("woff"), url("../../fonts/opensans-bold-webfont.ttf") format("truetype"), url("../../fonts/opensans-bold-webfont.svg") format("svg");
-  font-weight: bold; }
-
-@font-face {
-  font-family: "Open Sans";
-  src: url("fonts/opensans-lightitalic-webfont.eot");
-  src: url("fonts/opensans-lightitalic-webfont.eot") format("embedded-opentype"), url("fonts/opensans-lightitalic-webfont.woff") format("woff"), url("fonts/opensans-lightitalic-webfont.ttf") format("truetype"), url("fonts/opensans-lightitalic-webfont.svg") format("svg");
-  font-style: italic; }
-
-@font-face {
-  font-family: "Open Sans";
-  src: url("fonts/opensans-bolditalic-webfont.eot");
-  src: url("fonts/opensans-bolditalic-webfont.eot") format("embedded-opentype"), url("fonts/opensans-bolditalic-webfont.woff") format("woff"), url("fonts/opensans-bolditalic-webfont.ttf") format("truetype"), url("fonts/opensans-bolditalic-webfont.svg") format("svg");
-  font-weight: bold;
-  font-style: italic; }
-
 body {
   font-size: 16px;
   font-family: Open Sans;
-  color: #ffffff; }
+  color: #ffffff;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100vh; }
 
 header {
   display: none; }
@@ -93,11 +71,12 @@ header {
       -webkit-justify-content: flex-start;
           -ms-flex-pack: start;
               justify-content: flex-start;
-      width: 20vw; } }
+      width: 10vw;
+      margin: 1rem; } }
 
 section {
   width: 100vw;
-  background-color: #bb2f09;
+  background: linear-gradient(to right, #bb2f09, #c25916);
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -106,21 +85,16 @@ section {
           justify-content: center; }
   @media all and (min-width: 600px) {
     section {
-      width: 80vw; } }
-
-.app {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  height: 100vh; }
+      width: 90vw; } }
 
 .shuttle {
-  background-color: #bb2f09;
+  background: linear-gradient(to right, #bb2f09, #c25916);
   border-radius: 50%;
   font-size: 4.5rem;
   -webkit-transform: rotate(270deg);
           transform: rotate(270deg);
-  padding: 0.5rem; }
+  padding: 0.5rem;
+  text-shadow: 0 0px 0px #706f70, 0 1px 2px rgba(112, 111, 112, 0.2), 0 2px 2px rgba(112, 111, 112, 0.2), 0 3px 2px rgba(112, 111, 112, 0.5), 0 5px 2px #706f70; }
 
 .title {
   text-transform: uppercase;
@@ -133,16 +107,23 @@ section {
           transform: rotate(270deg);
   margin: 5rem 0 3.5rem 0; }
 
-button {
-  color: #e2231a;
+.take-test {
   text-transform: uppercase;
   font-weight: bold;
   -webkit-align-self: center;
       -ms-flex-item-align: center;
-          align-self: center; }
+          align-self: center;
+  border: none;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  box-shadow: 4px 12px 22px 3px rgba(0, 0, 0, 0.5); }
 
 .timer {
   font-family: Orbitron, sans-serif;
-  text-align: right;
   background-color: #000000;
-  color: #13b127; }
+  color: #13b127;
+  position: absolute;
+  font-size: 2rem;
+  border: linear-gradient(to right, #bb2f09, #c25916);
+  padding: 0.5rem 1rem;
+  box-shadow: 4px 12px 22px 3px rgba(0, 0, 0, 0.5); }

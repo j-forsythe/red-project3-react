@@ -5,13 +5,14 @@ var browserSync = require('browser-sync');
 var plumber = require('gulp-plumber');
 var rename = require('gulp-rename');
 var webpack = require('webpack-stream');
+var historyApiFallback = require('connect-history-api-fallback');
 
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var cssnano = require('gulp-cssnano');
 
 gulp.task('sass', function() {
-   gulp.src('./sass/style.scss')
+   gulp.src('./source/style.scss')
       .pipe(plumber())
       .pipe(sass())
       .pipe(autoprefixer({
@@ -25,15 +26,10 @@ gulp.task('sass', function() {
 
 
 gulp.task('compile-react', function() {
-	gulp.src('./**/*.jsx')
+	return gulp.src('./source/main.jsx')
 		.pipe(plumber())
 		.pipe(webpack({
-        entry: {
-          main: './main.jsx'
-        },
-        watch: true,
         output: {
-          publicPath: '',
           filename: 'main.js'
         },
         module: {
@@ -50,15 +46,24 @@ gulp.task('compile-react', function() {
 		.pipe(gulp.dest('./build'));
 });
 
-gulp.task('browser-sync', ['compile-react'], function() {
+gulp.task('build-html', function() {
+  gulp.src('./source/index.html')
+  .pipe(gulp.dest('./build'));
+});
+
+gulp.task('browser-sync', ['compile-react', 'build-html', 'sass'], function() {
 
 	browserSync.init({
-		server: './'
+		server: {
+      baseDir: './build/',
+      middleware: [historyApiFallback()]
+    }
 	});
 
-	gulp.watch(['main.jsx'], ['compile-react']);
-  gulp.watch('sass/*.scss', ['sass']);
-	gulp.watch(['./build/main.js', 'index.html', './build/*.min.css']).on('change', browserSync.reload);
+	gulp.watch(['./source/main.jsx',  './source/components/*.jsx'], ['compile-react']);
+  gulp.watch(['./source/index.html'], ['build-html']);
+  gulp.watch('./source/sass/*.scss', ['sass']);
+	gulp.watch(['./build/main.js', './build/index.html', './build/*.min.css']).on('change', browserSync.reload);
 });
 
 gulp.task('default', ['browser-sync']);
