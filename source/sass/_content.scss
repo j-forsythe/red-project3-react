@@ -31,3 +31,31 @@ button {
 
   }
 }
+
+form {
+  width: 500px;
+  height: 300px;
+  background: $mars-gradient;
+  font-weight: bold;
+  font-size: 2rem;
+  border: 3px dashed black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  p {
+    padding: 2rem;
+  }
+}
+
+input {
+  border: none;
+  border-bottom: 1px solid #509dbe;
+  background-color: transparent;
+  text-align: center;
+  color: white;
+  font-size: 1rem;
+    &:focus {
+    outline: none;
+  }
+}
