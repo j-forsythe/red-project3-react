@@ -60,7 +60,7 @@
 
 	var _questions2 = _interopRequireDefault(_questions);
 
-	var _welcome = __webpack_require__(218);
+	var _welcome = __webpack_require__(219);
 
 	var _welcome2 = _interopRequireDefault(_welcome);
 
@@ -68,7 +68,7 @@
 
 	var _timer2 = _interopRequireDefault(_timer);
 
-	var _notfound = __webpack_require__(219);
+	var _notfound = __webpack_require__(220);
 
 	var _notfound2 = _interopRequireDefault(_notfound);
 
@@ -24735,9 +24735,14 @@
 
 	var _timer2 = _interopRequireDefault(_timer);
 
+	var _testQuestions = __webpack_require__(218);
+
+	var _testQuestions2 = _interopRequireDefault(_testQuestions);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// import Welcome from 'welcome.jsx';
+	//
+
 
 	var Questions = _react2.default.createClass({
 	  displayName: 'Questions',
@@ -24762,13 +24767,12 @@
 	        'button',
 	        { className: 'evaluate', onClick: this.beginTest },
 	        'Begin Evaluation'
-	      ) : ""
+	      ) : "",
+	      !this.state.startup ? "" : _react2.default.createElement(_testQuestions2.default, null)
 	    );
 	  }
 
 	});
-	//
-
 
 	module.exports = Questions;
 
@@ -24872,10 +24876,91 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	//
+	// import Timer from './timer.jsx';
+	// import Welcome from 'welcome.jsx';
+
+	var TestQuestions = _react2.default.createClass({
+	  displayName: 'TestQuestions',
+
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      questionArray: {},
+	      user_answers: [],
+	      step: 0
+	    };
+	  },
+
+	  nextStep: function nextStep() {
+	    this.setState({ step: this.state.step + 1 });
+	  },
+
+	  // onSubmit: function(e) {
+	  //   e.preventDefault();
+	  //   this.setState({ questions: this.state.questions})
+	  // },
+
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'test-area' },
+	      _react2.default.createElement(
+	        'form',
+	        { className: 'test-questions', onSubmit: this.onSubmit },
+	        Object.keys(questionArray).map(function (result) {
+	          return _react2.default.createElement(
+	            'p',
+	            { key: 1 },
+	            questionArray[result].text
+	          );
+	        }),
+	        _react2.default.createElement('input', { type: 'text' })
+	      )
+	    );
+	  }
+
+	});
+
+	var questionArray = {
+	  1: {
+	    text: "how you doin?",
+	    answer: 42,
+	    id: 1
+	  },
+	  2: {
+	    text: "sup fool?",
+	    answer: 42,
+	    id: 2
+	  },
+	  3: {
+	    text: "yo ho?",
+	    answer: 42,
+	    id: 3
+	  }
+
+	};
+
+	module.exports = TestQuestions;
+
+/***/ },
+/* 219 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(159);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	var Welcome = _react2.default.createClass({
 	  displayName: 'Welcome',
 	  evaluateButton: function evaluateButton() {
-	    this.props.history.push('/mars-test');
+	    _reactRouter.browserHistory.push('/mars-test');
 	  },
 
 
@@ -24896,7 +24981,7 @@
 	module.exports = Welcome;
 
 /***/ },
-/* 219 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

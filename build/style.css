@@ -137,7 +137,7 @@ button {
   padding: 0.5rem 1rem;
   width: 120px;
   box-shadow: 4px 12px 22px 3px rgba(0, 0, 0, 0.5);
-  top: 5rem;
+  top: 1rem;
   right: 1rem;
   text-align: center;
   transition: all 1s ease-in-out; }

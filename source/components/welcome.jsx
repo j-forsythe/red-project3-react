@@ -5,7 +5,7 @@ import { browserHistory } from 'react-router';
 var Welcome = React.createClass({
 
   evaluateButton() {
-    this.props.history.push('/mars-test');
+    browserHistory.push('/mars-test');
   },
 
   render: function() {
