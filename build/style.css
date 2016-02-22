@@ -144,7 +144,7 @@ button {
   .timer.hidden {
     right: -200px; }
 
-form {
+.test-questions {
   width: 500px;
   height: 300px;
   background: linear-gradient(to right, #bb2f09, #c25916);
@@ -162,8 +162,9 @@ form {
           justify-content: center;
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
-          flex-direction: column; }
-  form p {
+          flex-direction: column;
+  border-radius: 25%; }
+  .test-questions p {
     padding: 2rem; }
 
 input {

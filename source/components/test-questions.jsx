@@ -1,63 +1,63 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 //
-// import Timer from './timer.jsx';
+import CurrentQuestion from './currentquestion.jsx';
 // import Welcome from 'welcome.jsx';
 
 var TestQuestions = React.createClass({
 
   getInitialState: function() {
     return {
-      questionArray: {},
-      user_answers: [],
-      step: 0
-    };
+      questionIndex: 0,
+      correctCount: 0
+    }
   },
 
-  nextStep: function(){
-  this.setState({step: (this.state.step + 1)});
-},
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.questionIndex === nextProps.questions.length) {
+      this.state.correctCount === 2
+      ? this.props.onSuccess()
+      : this.props.onReject();
+    }
 
-// onSubmit: function(e) {
-//   e.preventDefault();
-//   this.setState({ questions: this.state.questions})
-// },
+  },
 
 
   render: function() {
     return (
-      <div className="test-area">
-          <form className="test-questions" onSubmit={this.onSubmit}>
-            {Object.keys(questionArray).map(function(result) {
-                return <p key={1}>{questionArray[result].text}</p>
-            })}
-          <input type="text"/>
-        </form>
+      <div className="test-questions">
+          <CurrentQuestion
+            currentQuestion={this.props.questions[this.state.questionIndex]}
+            onAnswer={this._handleUserAnswer} />
+        </div>
 
-      </div>
     );
-  }
+  },
+
+  _handleUserAnswer(userAnswer) {
+    var correctAnswer = this.props.questions[this.state.questionIndex].answer;
+    var currentCorrectCount = this.state.correctCount;
+
+    if (correctAnswer === userAnswer) {
+      currentCorrectCount  = currentCorrectCount + 1;
+    }
+    this.setState({
+      correctCount: currentCorrectCount,
+      questionIndex: this.state.questionIndex + 1
+    });
+  },
 
 });
 
 
-var questionArray = {
-    1: {
-      text: "how you doin?",
-      answer: 42,
-      id: 1
-    },
-    2: {
-      text:"sup fool?",
-      answer: 42,
-      id: 2
-    },
-    3: {
-      text: "yo ho?",
-      answer: 42,
-      id: 3
-    }
 
+TestQuestions.propTypes = {
+  currentQuestion: React.PropTypes.arrayOf(React.PropTypes.shape({
+    question: React.PropTypes.string.isRequired,
+    answer: React.PropTypes.bool.isRequired
+  }).isRequired)
 };
+
+
 
 module.exports = TestQuestions;

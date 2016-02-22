@@ -4,14 +4,14 @@ import { browserHistory } from 'react-router';
 
 var Welcome = React.createClass({
 
-  evaluateButton() {
+  _handleOnClick() {
     browserHistory.push('/mars-test');
   },
 
-  render: function() {
+  render() {
     return (
       <div className="test-area">
-        <button className="take-test" onClick={this.evaluateButton}>Take Test</button>
+        <button className="take-test" onClick={this._handleOnClick}>Take Test</button>
       </div>
     )
   }

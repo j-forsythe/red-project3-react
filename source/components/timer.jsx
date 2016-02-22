@@ -8,9 +8,8 @@ var Timer = React.createClass({
 
 
   getInitialState: function() {
-    var secondz = this.getSeconds();
     return {
-      secondsElapsed: secondz,
+      secondsElapsed: this.props.startTimer,
     }
   },
 
@@ -34,34 +33,31 @@ var Timer = React.createClass({
 
   tick: function(){
     this.setState({secondsElapsed: this.state.secondsElapsed - 1})
-    if (this.state.secondsElapsed === 0){
-      this.stopTime();
-    }
+
   },
 
-  startTime: function(){
-    this.setState(this.getInitialState());
+  _startTime(){
     this.interval = setInterval(this.tick, 1000);
     },
 
   componentWillReceiveProps: function(props) {
     if(props.start === true){
-      this.startTime();
+      this._startTime();
     }
   },
 
-  stopTime: function() {
+  componentDidUpdate() {
+    if (this.state.secondsElapsed === 0) this.props.onTimerFinished();
+  },
+
+  componentWillUnmount() {
     clearInterval(this.interval);
   },
 
-  showHideTimer: function() {
-    return this.props.start ? "timer" : "timer hidden"
-  },
-
-  render: function() {
+  render() {
     var seconds = this.secondsLeft();
     return (
-      <div className={this.showHideTimer()}>
+      <div className={this.props.start ? "timer" : "timer hidden"}>
         {this.minutesLeft()}:{seconds < 10 ? '0' + seconds : seconds}
       </div>
     )
@@ -69,5 +65,12 @@ var Timer = React.createClass({
 
 });
 
+Timer.protoTypes = {
+  startTimer: React.PropTypes.number.isRequired,
+  onTimerFinished: React.PropTypes.func.isRequired
+};
+Timer.defaultProps = {
+  startTimer: 60
+};
 
 module.exports = Timer;
