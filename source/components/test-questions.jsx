@@ -22,14 +22,13 @@ var TestQuestions = React.createClass({
 
   },
 
-
   render: function() {
     return (
       <div className="test-questions">
-          <CurrentQuestion
-            currentQuestion={this.props.questions[this.state.questionIndex]}
-            onAnswer={this._handleUserAnswer} />
-        </div>
+        <CurrentQuestion
+          currentQuestion={this.props.questions[this.state.questionIndex]}
+          onAnswer={this._handleUserAnswer} />
+      </div>
 
     );
   },
@@ -49,15 +48,12 @@ var TestQuestions = React.createClass({
 
 });
 
-
-
+//define proptypes to use universally
 TestQuestions.propTypes = {
-  currentQuestion: React.PropTypes.arrayOf(React.PropTypes.shape({
+  questions: React.PropTypes.arrayOf(React.PropTypes.shape({
     question: React.PropTypes.string.isRequired,
     answer: React.PropTypes.bool.isRequired
   }).isRequired)
 };
-
-
 
 module.exports = TestQuestions;

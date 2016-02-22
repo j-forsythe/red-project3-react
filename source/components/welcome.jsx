@@ -1,9 +1,10 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 
-
+//welcome page
 var Welcome = React.createClass({
 
+//takes user to question page on button click
   _handleOnClick() {
     browserHistory.push('/mars-test');
   },
@@ -11,7 +12,7 @@ var Welcome = React.createClass({
   render() {
     return (
       <div className="test-area">
-        <button className="take-test" onClick={this._handleOnClick}>Take Test</button>
+        <button onClick={this._handleOnClick}>Take Test</button>
       </div>
     )
   }

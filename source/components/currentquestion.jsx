@@ -1,5 +1,6 @@
 var React = require('react');
 
+//iterate through question array and capture user answer
 var CurrentQuestion = React.createClass({
 
   render: function() {
@@ -11,7 +12,6 @@ var CurrentQuestion = React.createClass({
       </div>
     );
   }
-
 });
 
 CurrentQuestion.propTypes = {

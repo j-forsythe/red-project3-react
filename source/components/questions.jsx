@@ -5,23 +5,24 @@ import Timer from './timer.jsx';
 import TestQuestions from './test-questions.jsx';
 
 var questionArray = [
-    {
-      question: "The answer to every is 42",
-      answer: true
-    },
-    {
-      question:"Life on mars?",
-      answer: true
-    },
-    {
-      question: "I'm blue, if I was green I would die",
-      answer: false
-    }
+  {
+    question: "The answer to everything is 42",
+    answer: true
+  },
+  {
+    question:"Life on mars?",
+    answer: true
+  },
+  {
+    question: "I'm blue, if I was green I would die",
+    answer: false
+  }
 ];
 
+//pulls other question components here
 var Questions = React.createClass({
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       startup: false,
     }
@@ -39,25 +40,23 @@ var Questions = React.createClass({
     this.setState( { startup: true });
   },
 
-  render: function() {
+  render() {
     return (
       <div className="test-area">
-          <Timer  start={this.state.startup}
-                  startTimer={60}
-                  onTimerFinished={this._handleReject}/>
+        <Timer  start={this.state.startup}
+                startTimer={60}
+                onTimerFinished={this._handleReject}/>
         { !this.state.startup
-          ? <button className="evaluate"
-                    onClick={this._handleBeginTest}>Begin Evaluation</button>
-          : ""}
+          ? <button onClick={this._handleBeginTest}>Begin Evaluation</button>
+        : ""}
         { !this.state.startup
           ? ""
           : <TestQuestions  questions={questionArray}
                             onSuccess={this._handleSuccess}
                             onReject={this._handleReject}/> }
-      </div>
-    );
-  }
+        </div>
+      );
+    }
+  });
 
-});
-
-module.exports = Questions;
+  module.exports = Questions;

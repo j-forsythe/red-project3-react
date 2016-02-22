@@ -1,12 +1,8 @@
 import React from 'react';
 
 import Questions from './questions.jsx';
-// import Welcome from 'welcome.jsx';
-
 
 var Timer = React.createClass({
-
-
   getInitialState: function() {
     return {
       secondsElapsed: this.props.startTimer,
@@ -30,26 +26,27 @@ var Timer = React.createClass({
     return Math.floor(this.state.secondsElapsed / 60);
   },
 
-
   tick: function(){
     this.setState({secondsElapsed: this.state.secondsElapsed - 1})
-
   },
 
   _startTime(){
     this.interval = setInterval(this.tick, 1000);
-    },
+  },
 
+  //starts timer on button click
   componentWillReceiveProps: function(props) {
     if(props.start === true){
       this._startTime();
     }
   },
 
+  //takes user to rejected screen at end of timer
   componentDidUpdate() {
     if (this.state.secondsElapsed === 0) this.props.onTimerFinished();
   },
 
+  //prevents memory leak
   componentWillUnmount() {
     clearInterval(this.interval);
   },

@@ -5,7 +5,24 @@ body {
   display: flex;
   height: 100vh;
   overflow: hidden;
+}
 
+button {
+  text-transform: uppercase;
+  font-weight: bold;
+  border: 1px solid white;
+  border-radius: 25px;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  box-shadow: 4px 12px 22px 3px rgba(0, 0, 0, 0.5);
+  transition:all .3s ease-out;
+  &:hover {
+    background-color: $mars-color;
+    transform:translate(0px,-6px);
+  }
+  &:focus {
+    outline:none;
+  }
 }
 
 header {

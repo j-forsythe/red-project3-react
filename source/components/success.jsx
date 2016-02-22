@@ -4,9 +4,9 @@ var Accepted = React.createClass({
 
   render: function() {
     return (
-      <div>
-        <h2>Accepted!!!</h2>
-        <p>Congratulations, you did it.</p>
+      <div className="result">
+        <h2>Accepted!</h2>
+        <p>Congratulations, you did it!</p>
       </div>
     );
   }

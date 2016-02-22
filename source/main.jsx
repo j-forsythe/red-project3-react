@@ -9,7 +9,6 @@ import NotFound from './components/notfound.jsx';
 import Rejected from './components/rejected.jsx';
 import Accepted from './components/success.jsx';
 
-
 var MarsApp = React.createClass({
 
   render: function() {
