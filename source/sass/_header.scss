@@ -4,6 +4,11 @@
   font-size: 4.5rem;
   transform: rotate(270deg);
   padding: 0.5rem;
+  height: 90px;
+
+  .fa {
+    margin-top: .3rem;
+  }
   text-shadow: 0 1px 0 rgb(128,141,147) ,
               -1px 0 0 rgb(205,210,213) ,
               -1px 2px 0 rgb(128,141,147) ,

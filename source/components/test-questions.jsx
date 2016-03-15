@@ -1,8 +1,6 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
-//
+
 import CurrentQuestion from './currentquestion.jsx';
-// import Welcome from 'welcome.jsx';
 
 var TestQuestions = React.createClass({
 
@@ -27,9 +25,9 @@ var TestQuestions = React.createClass({
       <div className="test-questions">
         <CurrentQuestion
           currentQuestion={this.props.questions[this.state.questionIndex]}
-          onAnswer={this._handleUserAnswer} />
+          onAnswer={this._handleUserAnswer}
+          />
       </div>
-
     );
   },
 
@@ -41,8 +39,8 @@ var TestQuestions = React.createClass({
       currentCorrectCount  = currentCorrectCount + 1;
     }
     this.setState({
-      correctCount: currentCorrectCount,
-      questionIndex: this.state.questionIndex + 1
+      questionIndex: this.state.questionIndex + 1,
+      correctCount: currentCorrectCount
     });
   },
 
@@ -52,7 +50,7 @@ var TestQuestions = React.createClass({
 TestQuestions.propTypes = {
   questions: React.PropTypes.arrayOf(React.PropTypes.shape({
     question: React.PropTypes.string.isRequired,
-    answer: React.PropTypes.bool.isRequired
+    answer: React.PropTypes.string.isRequired
   }).isRequired)
 };
 

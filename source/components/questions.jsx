@@ -7,15 +7,15 @@ import TestQuestions from './test-questions.jsx';
 var questionArray = [
   {
     question: "The answer to everything is 42",
-    answer: true
+    answer: "true"
   },
   {
     question:"Life on mars?",
-    answer: true
+    answer: "true"
   },
   {
     question: "I'm blue, if I was green I would die",
-    answer: false
+    answer: "false"
   }
 ];
 
@@ -42,7 +42,7 @@ var Questions = React.createClass({
 
   render() {
     return (
-      <div className="test-area">
+      <div className="testing">
         <Timer  start={this.state.startup}
                 startTimer={60}
                 onTimerFinished={this._handleReject}/>

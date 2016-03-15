@@ -1,6 +1,7 @@
 .test-area {
   display:flex;
   align-items: center;
+  // position: relative;
 }
 
 .timer {
@@ -42,23 +43,55 @@
     margin: 1rem;
     align-items: center;
   }
+  input[type="text"] {
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 2rem;
+    background: transparent;
+    text-align: center;
+    &:focus {
+      outline: none;
+    }
+  }
 }
 
 .result {
-  height: 200px;
-  width: 500px;
   text-align: center;
-  font-size: 1.5rem;
-  background-color: rgba(4, 7, 68, 0.61);
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
   h2 {
     text-transform: uppercase;
     font-weight: bold;
-    animation: pulse 2s 5;
+    animation: pulse 2s infinite 4s;
     font-family: sans-serif;
     font-size: 5rem;
+    opacity: 0;
+
   }
+}
+
+.failure {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  h2 {
+    text-transform: uppercase;
+    font-weight: bold;
+    animation: pulse 2s infinite;
+    font-family: sans-serif;
+    font-size: 5rem;
+    opacity: 0;
+
+  }
+}
+
+.icon {
+  font-size: 12rem;
+  position: absolute;
+  transform: rotate(-90deg);
+  animation: fly 3s linear;
+  bottom: -300px;
+  margin-left: 7rem;
 }

@@ -7,19 +7,25 @@ var CurrentQuestion = React.createClass({
     return (
       <div>
         <p>{this.props.currentQuestion.question}</p>
-        <button onClick={() => this.props.onAnswer(true)}>True</button>
-        <button onClick={() => this.props.onAnswer(false)}>False</button>
+        <input ref="userInput" type="text" placeholder="true or false?" required/>
+        <button onClick={this._answer}>Submit Answer</button>
       </div>
     );
+  },
+
+  _answer(){
+    this.props.onAnswer(this.refs.userInput.value);
+    this.refs.userInput.value = '';
   }
+
 });
 
 CurrentQuestion.propTypes = {
   currentQuestion: React.PropTypes.shape({
     question: React.PropTypes.string.isRequired,
-    answer: React.PropTypes.bool.isRequired
-  }).isRequired,
-  onAnswer: React.PropTypes.func.isRequired
+    answer: React.PropTypes.string.isRequired
+  }),
+  onAnswer: React.PropTypes.func.isRequired,
 };
 
 module.exports = CurrentQuestion;

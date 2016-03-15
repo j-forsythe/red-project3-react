@@ -11,9 +11,8 @@ var Rejected = React.createClass({
 
   render: function() {
     return (
-      <div className="result">
+      <div className="failure">
         <h2>Rejected!!</h2>
-        <p>Consider joining the darkside...</p>
       </div>
     );
   }

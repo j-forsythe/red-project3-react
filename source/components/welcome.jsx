@@ -11,7 +11,7 @@ var Welcome = React.createClass({
 
   render() {
     return (
-      <div className="test-area">
+      <div className="testing">
         <button onClick={this._handleOnClick}>Take Test</button>
       </div>
     )

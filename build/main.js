@@ -24756,13 +24756,13 @@
 
 	var questionArray = [{
 	  question: "The answer to everything is 42",
-	  answer: true
+	  answer: "true"
 	}, {
 	  question: "Life on mars?",
-	  answer: true
+	  answer: "true"
 	}, {
 	  question: "I'm blue, if I was green I would die",
-	  answer: false
+	  answer: "false"
 	}];
 
 	//pulls other question components here
@@ -24785,7 +24785,7 @@
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
-	      { className: 'test-area' },
+	      { className: 'testing' },
 	      _react2.default.createElement(_timer2.default, { start: this.state.startup,
 	        startTimer: 60,
 	        onTimerFinished: this._handleReject }),
@@ -24902,15 +24902,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRouter = __webpack_require__(159);
-
 	var _currentquestion = __webpack_require__(219);
 
 	var _currentquestion2 = _interopRequireDefault(_currentquestion);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	// import Welcome from 'welcome.jsx';
 
 	var TestQuestions = _react2.default.createClass({
 	  displayName: 'TestQuestions',
@@ -24936,7 +24932,8 @@
 	      { className: 'test-questions' },
 	      _react2.default.createElement(_currentquestion2.default, {
 	        currentQuestion: this.props.questions[this.state.questionIndex],
-	        onAnswer: this._handleUserAnswer })
+	        onAnswer: this._handleUserAnswer
+	      })
 	    );
 	  },
 
@@ -24948,19 +24945,17 @@
 	      currentCorrectCount = currentCorrectCount + 1;
 	    }
 	    this.setState({
-	      correctCount: currentCorrectCount,
-	      questionIndex: this.state.questionIndex + 1
+	      questionIndex: this.state.questionIndex + 1,
+	      correctCount: currentCorrectCount
 	    });
 	  }
 	});
 
 	//define proptypes to use universally
-
-	//
 	TestQuestions.propTypes = {
 	  questions: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.shape({
 	    question: _react2.default.PropTypes.string.isRequired,
-	    answer: _react2.default.PropTypes.bool.isRequired
+	    answer: _react2.default.PropTypes.string.isRequired
 	  }).isRequired)
 	};
 
@@ -24970,49 +24965,44 @@
 /* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var React = __webpack_require__(1);
 
 	//iterate through question array and capture user answer
 	var CurrentQuestion = React.createClass({
-	  displayName: 'CurrentQuestion',
+	  displayName: "CurrentQuestion",
 
 
 	  render: function render() {
-	    var _this = this;
-
 	    return React.createElement(
-	      'div',
+	      "div",
 	      null,
 	      React.createElement(
-	        'p',
+	        "p",
 	        null,
 	        this.props.currentQuestion.question
 	      ),
+	      React.createElement("input", { ref: "userInput", type: "text", placeholder: "true or false?", required: true }),
 	      React.createElement(
-	        'button',
-	        { onClick: function onClick() {
-	            return _this.props.onAnswer(true);
-	          } },
-	        'True'
-	      ),
-	      React.createElement(
-	        'button',
-	        { onClick: function onClick() {
-	            return _this.props.onAnswer(false);
-	          } },
-	        'False'
+	        "button",
+	        { onClick: this._answer },
+	        "Submit Answer"
 	      )
 	    );
+	  },
+
+	  _answer: function _answer() {
+	    this.props.onAnswer(this.refs.userInput.value);
+	    this.refs.userInput.value = '';
 	  }
 	});
 
 	CurrentQuestion.propTypes = {
 	  currentQuestion: React.PropTypes.shape({
 	    question: React.PropTypes.string.isRequired,
-	    answer: React.PropTypes.bool.isRequired
-	  }).isRequired,
+	    answer: React.PropTypes.string.isRequired
+	  }),
 	  onAnswer: React.PropTypes.func.isRequired
 	};
 
@@ -25044,7 +25034,7 @@
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
-	      { className: 'test-area' },
+	      { className: 'testing' },
 	      _react2.default.createElement(
 	        'button',
 	        { onClick: this._handleOnClick },
@@ -25109,16 +25099,11 @@
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      { className: 'result' },
+	      { className: 'failure' },
 	      React.createElement(
 	        'h2',
 	        null,
 	        'Rejected!!'
-	      ),
-	      React.createElement(
-	        'p',
-	        null,
-	        'Consider joining the darkside...'
 	      )
 	    );
 	  }
@@ -25141,16 +25126,16 @@
 	  render: function render() {
 	    return React.createElement(
 	      "div",
-	      { className: "result" },
+	      { className: "testing" },
+	      React.createElement("i", { className: "fa fa-space-shuttle icon" }),
 	      React.createElement(
-	        "h2",
-	        null,
-	        "Accepted!"
-	      ),
-	      React.createElement(
-	        "p",
-	        null,
-	        "Congratulations, you did it!"
+	        "div",
+	        { className: "result" },
+	        React.createElement(
+	          "h2",
+	          null,
+	          "Accepted!"
+	        )
 	      )
 	    );
 	  }

@@ -10,18 +10,27 @@ $desktop-width: 600px;
     color: #13b127;
   }
   100% {
-    background-color: rgba(19, 177, 39, 0.28);
+    background-color: rgba(19, 177, 39, 0.3);
   }
 }
 
 @keyframes pulse {
   0% {
-    opacity: 0.5;
-  }
-  50% {
     opacity: 0;
   }
+  50% {
+    opacity: 1;
+  }
   100% {
-    opacity: 0.5;
+    opacity: 0;
+  }
+}
+
+@keyframes fly {
+  0% {
+    bottom: -100px;
+  }
+  100% {
+    bottom: 800px;
   }
 }
