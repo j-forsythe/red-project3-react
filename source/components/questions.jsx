@@ -16,7 +16,7 @@ var questionArray = [
   {
     question: "I'm blue, if I was green I would die",
     answer: "false"
-  }
+  },
 ];
 
 //pulls other question components here

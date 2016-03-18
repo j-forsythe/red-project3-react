@@ -16,15 +16,19 @@ var TestQuestions = React.createClass({
       this.state.correctCount === 2
       ? this.props.onSuccess()
       : this.props.onReject();
-    }
+      this.setState({ questionIndex: 0});
 
+    }
   },
 
   render: function() {
+    var currentQuestionIndex = this.props.questions[this.state.questionIndex];
+    if (!currentQuestionIndex) return <div/>;
+
     return (
       <div className="test-questions">
         <CurrentQuestion
-          currentQuestion={this.props.questions[this.state.questionIndex]}
+          currentQuestion={currentQuestionIndex}
           onAnswer={this._handleUserAnswer}
           />
       </div>

@@ -24922,16 +24922,20 @@
 	  componentWillUpdate: function componentWillUpdate(nextProps, nextState) {
 	    if (nextState.questionIndex === nextProps.questions.length) {
 	      this.state.correctCount === 2 ? this.props.onSuccess() : this.props.onReject();
+	      this.setState({ questionIndex: 0 });
 	    }
 	  },
 
 
 	  render: function render() {
+	    var currentQuestionIndex = this.props.questions[this.state.questionIndex];
+	    if (!currentQuestionIndex) return _react2.default.createElement('div', null);
+
 	    return _react2.default.createElement(
 	      'div',
 	      { className: 'test-questions' },
 	      _react2.default.createElement(_currentquestion2.default, {
-	        currentQuestion: this.props.questions[this.state.questionIndex],
+	        currentQuestion: currentQuestionIndex,
 	        onAnswer: this._handleUserAnswer
 	      })
 	    );
